@@ -19,6 +19,7 @@ from tools.routes import AppRoute
 @pytest.mark.regression
 @pytest.mark.registration
 class TestRegistration:
+    @pytest.mark.xdist_group(name="authorization-group")
     def test_successful_registration(
         self, registration_page: RegistrationPage, dashboard_page: DashboardPage
     ):

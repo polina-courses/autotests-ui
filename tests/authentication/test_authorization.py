@@ -20,6 +20,7 @@ from tools.routes import AppRoute
 @pytest.mark.regression
 @pytest.mark.authorization
 class TestAuthorization:
+    @pytest.mark.xdist_group(name="authorization-group")
     @pytest.mark.parametrize(
         "email, password",
         [
