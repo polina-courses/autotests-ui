@@ -4,3 +4,5 @@ pytest.ini
 browser-state.json
 allure-results
 allure-report
+tracing
+videos
