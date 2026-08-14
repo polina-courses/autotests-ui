@@ -40,13 +40,15 @@ jobs:
 
       # 5. Шаг для сохранения результатов Allure как артефакта, чтобы передать их в джобу publish-report
       - name: Upload Allure results
+        if: always()  # Сохраняем результаты, даже если тесты упали
         uses: actions/upload-artifact@v4  # Используем GitHub Action для загрузки артефактов
         with:
           name: allure-results  # Имя артефакта
           path: allure-results  # Каталог с результатами тестов, который сохраняем как артефакт
 
   publish-report:
-    needs: run-tests  # Запускаем эту джобу только после успешного завершения run-tests
+    if: always()  # Запускаем даже если run-tests завершилась с ошибкой, чтобы отчёт всё равно опубликовался
+    needs: run-tests  # Запускаем эту джобу только после завершения run-tests
     runs-on: ubuntu-latest  # Указываем, что джоба будет выполняться на последней версии Ubuntu
 
     steps:
